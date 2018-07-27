@@ -1,4 +1,10 @@
 /* -- Content -- */
 .link-add { margin-bottom: 30px; }
 
+/* -- login style-- */
+.body-login { background: lightblue url("../img/Background-login.jpg") no-repeat fixed center; background-size: cover; }
+.body-login .container { border: 1px solid silver; border-radius: 10px; max-width: 500px; width: 430px; margin-top: 70px; background-color: #f5f6f8; padding-bottom: 35px; }
+.body-login .container h2 { text-align: center; margin-bottom: 20px; }
+.body-login .container .password { margin-top: 15px; }
+
 /*# sourceMappingURL=style.css.map */
