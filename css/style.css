@@ -1,4 +1,4 @@
-/* -- Content -- */
+/* Content */
 .link-add { margin-bottom: 30px; }
 
 .logo { font-family: 'Hanalei Fill', cursive; }
@@ -6,10 +6,17 @@
 /* -- form add product -- */
 .form-producto { margin-top: 40px; }
 
-/* -- login style-- */
+/* Login Style */
 .body-login { background: lightblue url("../img/Background-login.jpg") no-repeat fixed center; background-size: cover; }
-.body-login .container { border: 1px solid silver; border-radius: 10px; max-width: 500px; width: 430px; margin-top: 70px; background-color: #f5f6f8; padding-bottom: 35px; }
-.body-login .container h2 { text-align: center; margin-bottom: 20px; }
+.body-login .container { border: 1px solid silver; border-radius: 10px; max-width: 500px; width: 430px; margin-top: 70px; background-color: #f5f6f8; padding-bottom: 25px; }
+.body-login .container h2 { text-align: center; }
 .body-login .container .password { margin-top: 15px; }
+
+/* Media Query */
+/* login style */
+@media (max-width: 375px) { .body-login .container { width: 300px; padding-bottom: 17px; }
+  .body-login .container h2 { font-size: 1.8em; }
+  .body-login .container input[type="text"], .body-login .container input[type="password"] { width: 240px; height: 30px; }
+  .body-login .container button { font-size: 1.1em; padding-top: 5px; padding-bottom: 5px; } }
 
 /*# sourceMappingURL=style.css.map */

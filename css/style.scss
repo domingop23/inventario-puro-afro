@@ -1,4 +1,6 @@
-/* -- Content -- */
+/*
+ * Content
+ */
 .link-add{
 	margin-bottom: 30px;
 }
@@ -7,13 +9,14 @@
 	font-family: 'Hanalei Fill', cursive;
 }
 
-
 /* -- form add product -- */
 .form-producto{
 	margin-top: 40px;
 }
 
-/* -- login style-- */
+/*
+ * Login Style
+ */
 .body-login{
 	background: lightblue url("../img/Background-login.jpg") no-repeat fixed center; 
 	background-size: cover;
@@ -25,14 +28,41 @@
 		width: 430px;
 		margin-top: 70px;
 		background-color: #f5f6f8;
-		padding-bottom: 35px;
+		padding-bottom: 25px;
 
 		h2{
 			text-align: center;
-			margin-bottom: 20px;
 		}
 		.password{
 			margin-top:15px;
+		}
+	}
+}
+
+/*
+ * Media Query
+ */
+
+/* login style */
+@media (max-width: 375px){
+	
+	.body-login{
+		.container{
+			width: 300px;
+			padding-bottom: 17px;
+
+			h2{
+				font-size: 1.8em;
+			}
+			input[type="text"], input[type="password"]{
+				width: 240px;
+				height: 30px;
+			}
+			button{
+				font-size: 1.1em;
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
 		}
 	}
 }
