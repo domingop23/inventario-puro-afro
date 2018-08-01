@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Inventario</title>
+	<title>Añadir Producto</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,10 +16,10 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="css/dashboard.css">
 
-	<!-- Load icon font-awesome -->
-	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <!-- Load icon font-awesome -->
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 
-	<!-- Load google fonts -->
+    <!-- Load google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
 	
 	<!-- Load css style -->
@@ -37,7 +37,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand logo" href="inventario.html">Sistema de Inventario</a>
+          <a class="navbar-brand logo" href="producto.php">Sistema de Inventario</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -47,55 +47,36 @@
       </div>
     </nav>
     <!-- end navbar -->
-
-	<!--container -->
+    
+    <!-- container -->
     <div class="container-fluid">
       <div class="row">
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventario.html">Inventario</a></li>
-            <li><a href="ventas.html">Ventas</a></li>
-            <li><a href="compras.html">Compras</a></li>
+            <li class="active"><a href="producto.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li><a href="ventas.php">Ventas</a></li>
+            <li><a href="compras.php">Compras</a></li>
           </ul>
         </div>
         <!-- end nav-sidebar -->
-
-		<!-- content -->
-        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="text-center page-header">Inventario de Productos</h1>
-          <h4 class="sub-header"><a class="pull-right" href="anadir_producto.html"><i class="fa fa-plus" aria-hidden="true"> Añadir Producto</i></a></h4>
-          <div class="table-responsive">
-            <table class="table table-striped">
-              <thead>
-                <tr>
-                  <th>Código Producto</th>
-                  <th>Descriptión</th>
-                  <th>Existencias Iniciales</th>
-                  <th>Compras</th>
-                  <th>Ventas</th>
-                  <th>Stock</th>
-                  <th>Acción</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
-                  <td>sit</td>
-                  <td>ipsu</td>
-                  <td>
-                  	<a href="#">Editar</a> -&nbsp;
-                  	<a href="#">Borrar</a>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        
+        <!-- form añadir producto -->
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
+            <h1 class="text-center page-header">Añadir Producto</h1>
+          <form action="#" class="form-producto custom-form">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Descripción</label>
+              <input type="text" class="form-control" id="exampleInputEmail1">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Existencias Iniciales</label>
+              <input type="text" class="form-control" id="exampleInputEmail1">
+            </div>
+            <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+          </form>
         </div>
-        <!-- end content -->
+        <!-- end form añadir producto -->
       </div>
     </div>
     <!-- end container -->

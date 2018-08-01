@@ -14,7 +14,7 @@
 /* Login style */
 @media (max-width: 375px) { .body-login .container { width: 300px; padding-bottom: 17px; }
   .body-login .container h2 { font-size: 1.8em; }
-  .body-login .container input[type="text"], .body-login .container input[type="password"] { width: 240px; height: 30px; }
+  .body-login .container input[type="text"], .body-login .container input[type="password"] { width: 240px; height: 32px; }
   .body-login .container button { font-size: 1.1em; padding-top: 5px; padding-bottom: 5px; } }
 /* Layout content style */
 @media (max-width: 375px) { .logo { font-size: 1.2em; }

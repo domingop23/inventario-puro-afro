@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Añadir Producto</title>
+	<title>Añadir Compra</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,6 @@
 	
 	<!-- Load css style -->
 	<link rel="stylesheet" href="css/style.css">
-
 </head>
 <body>
 	<!-- navbar -->
@@ -37,7 +36,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand logo" href="inventario.html">Sistema de Inventario</a>
+          <a class="navbar-brand logo" href="producto.php">Sistema de Inventario</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -54,23 +53,27 @@
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventario.html">Inventario <span class="sr-only">(current)</span></a></li>
-            <li><a href="ventas.html">Ventas</a></li>
-            <li><a href="compras.html">Compras</a></li>
+            <li class="active"><a href="producto.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li><a href="ventas.php">Ventas</a></li>
+            <li><a href="compras.php">Compras</a></li>
           </ul>
         </div>
         <!-- end nav-sidebar -->
         
         <!-- form añadir producto -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-            <h1 class="text-center page-header">Añadir Producto</h1>
-          <form action="#" class="form-producto custom-form">
+            <h1 class="text-center page-header">Añadir Compra</h1>
+          <form action="#" class="custom-form">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Fecha</label>
+              <input type="text" class="form-control" id="exampleInputEmail1">
+            </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Descripción</label>
               <input type="text" class="form-control" id="exampleInputEmail1">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Existencias Iniciales</label>
+              <label for="exampleInputEmail1">Cantidad</label>
               <input type="text" class="form-control" id="exampleInputEmail1">
             </div>
             <button type="submit" class="btn btn-success btn-lg">Guardar</button>

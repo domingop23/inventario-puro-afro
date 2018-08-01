@@ -1,3 +1,7 @@
+<?php
+    include("conexion.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +41,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand logo" href="inventario.html">Sistema de Inventario</a>
+          <a class="navbar-brand logo" href="producto.php">Sistema de Inventario</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -54,9 +58,9 @@
         <!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventario.html">Inventario <span class="sr-only">(current)</span></a></li>
-            <li><a href="ventas.html">Ventas</a></li>
-            <li><a href="compras.html">Compras</a></li>
+            <li class="active"><a href="producto.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li><a href="ventas.php">Ventas</a></li>
+            <li><a href="compras.php">Compras</a></li>
           </ul>
         </div>
         <!-- end nav-sidebar -->
@@ -64,7 +68,7 @@
         <!-- content -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
           <h1 class=" text-center page-header">Ventas de Compras</h1>
-          <h4 class="sub-header"><a class="pull-right" href="anadir_producto.html"><i class="fa fa-plus" aria-hidden="true"> Añadir Producto</i></a></h4>
+          <h4 class="sub-header"><a class="pull-right" href="anadir_compra.php"><i class="fa fa-plus" aria-hidden="true"> Añadir Compra</i></a></h4>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -76,17 +80,34 @@
                   <th>Acción</th>
                 </tr>
               </thead>
+              <?php
+                // Setting utf8 data format
+                mysqli_set_charset($conexion, "utf8");
+
+                $select = "SELECT * FROM inventario_compra";
+                $result = mysqli_query($conexion, $select);
+                if(mysqli_num_rows($result) > 0){
+                    while($data = mysqli_fetch_array($result)){
+              ?>
               <tbody>
                 <tr>
-                  <td>1,001</td>
-                  <td>Lorem</td>
-                  <td>ipsum</td>
-                  <td>dolor</td>
+                  <td><?php echo $data["#_de_factura"]; ?></td>
+                  <td><?php echo $data["fecha"]; ?></td>
+                  <td><?php echo $data["descripción"]; ?></td>
+                  <td><?php echo $data["cantidad"]; ?></td>
                   <td>
                     <a href="#">Editar</a> -&nbsp;
                     <a href="#">Borrar</a>
                   </td>
                 </tr>
+                <?php
+                    }
+                  }else{
+                ?>
+                <tr>
+                    <td align="center" colspan="5">No hay datos disponibles en la tabla</td>
+                </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
