@@ -1,8 +1,24 @@
+<?php
+    include("conexion.php");
+
+    if(isset($_POST["save"]) && $_POST["save"]){
+        $date = $_POST["date"];
+        $description = $_POST["description"];
+        $quantity = $_POST["quantity"];
+        
+        $insert = "INSERT INTO sales (date, description, quantity) VALUES ('$date', '$description', '$quantity')"; 
+        if(mysqli_query($conexion, $insert)){
+            header('Location: sales.php');
+        }
+        mysql_close($conexion);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Añadir Compra</title>
+	<title>Añadir Venta</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,6 +40,7 @@
 	
 	<!-- Load css style -->
 	<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 	<!-- navbar -->
@@ -35,8 +52,8 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand logo" href="producto.php">Sistema de Inventario</a>
+          </button> 
+          <a class="navbar-brand logo" href="inventory.php">Sistema de Inventario</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -53,30 +70,30 @@
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="producto.php">Inventario <span class="sr-only">(current)</span></a></li>
-            <li><a href="ventas.php">Ventas</a></li>
-            <li><a href="compras.php">Compras</a></li>
+            <li class="active"><a href="inventory.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li><a href="sales.php">Ventas</a></li>
+            <li><a href="purchases.php">Compras</a></li>
           </ul>
         </div>
         <!-- end nav-sidebar -->
         
         <!-- form añadir producto -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-            <h1 class="text-center page-header">Añadir Compra</h1>
-          <form action="#" class="custom-form">
+            <h1 class="text-center page-header">Añadir Venta</h1>
+          <form action="" method="post" class="form-producto custom-form">
             <div class="form-group">
-              <label for="exampleInputEmail1">Fecha</label>
-              <input type="text" class="form-control" id="exampleInputEmail1">
+              <label for="exampleInput1">Fecha</label>
+              <input type="text" class="form-control" name="date" id="exampleInput1">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Descripción</label>
-              <input type="text" class="form-control" id="exampleInputEmail1">
+              <label for="exampleInput2">Descripción</label>
+              <input type="text" class="form-control" name="description" id="exampleInput2">
             </div>
             <div class="form-group">
-              <label for="exampleInputEmail1">Cantidad</label>
-              <input type="text" class="form-control" id="exampleInputEmail1">
+              <label for="exampleInput3">Cantidad</label>
+              <input type="text" class="form-control" name="quantity" id="exampleInput3">
             </div>
-            <button type="submit" class="btn btn-success btn-lg">Guardar</button>
+            <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
           </form>
         </div>
         <!-- end form añadir producto -->

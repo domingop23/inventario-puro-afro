@@ -1,12 +1,13 @@
-<?php 
-    include("conexion.php");
+<?php
+    include('conexion.php');
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Ventas</title>
+	<title>Inventario</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,10 +21,10 @@
 	<!-- Custom styles for this template -->
 	<link rel="stylesheet" href="css/dashboard.css">
 
-    <!-- Load icon font-awesome -->
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	<!-- Load icon font-awesome -->
+	<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
 
-    <!-- Load google fonts -->
+	<!-- Load google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
 	
 	<!-- Load css style -->
@@ -31,7 +32,7 @@
 
 </head>
 <body>
-    <!-- navbar -->
+	<!-- navbar -->
 	<nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -41,7 +42,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand logo" href="producto.php">Sistema de Inventario</a>
+          <a class="navbar-brand logo" href="inventory.php">Sistema de Inventario</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
@@ -52,50 +53,54 @@
     </nav>
     <!-- end navbar -->
 
-    <!--container -->
+	<!--container -->
     <div class="container-fluid">
       <div class="row">
-        <!-- nav-sidebar -->
+      	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="producto.php">Inventario <span class="sr-only">(current)</span></a></li>
-            <li><a href="ventas.php">Ventas</a></li>
-            <li><a href="compras.php">Compras</a></li>
+            <li class="active"><a href="inventory.php">Inventario</a></li>
+            <li><a href="sales.php">Ventas</a></li>
+            <li><a href="purchases.php">Compras</a></li>
           </ul>
         </div>
         <!-- end nav-sidebar -->
 
-        <!-- content -->
+		<!-- content -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class=" text-center page-header">Ventas de Productos</h1>
-          <h4 class="sub-header"><a class="pull-right" href="anadir_venta.php"><i class="fa fa-plus" aria-hidden="true"> Añadir Venta</i></a></h4>
+          <h1 class="text-center page-header">Inventario de Productos</h1>
+          <h4 class="sub-header"><a class="pull-right" href="add_product.php"><i class="fa fa-plus" aria-hidden="true"> Añadir Producto</i></a></h4>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th># de Factura</th>
-                  <th>Fecha</th>
+                  <th>Código Producto</th>
                   <th>Descripción</th>
-                  <th>Cantidad</th>
+                  <th>Existencias Iniciales</th>
+                  <th>Compras</th>
+                  <th>Ventas</th>
+                  <th>Stock</th>
                   <th>Acción</th>
                 </tr>
               </thead>
-              <?php 
+              <?php
                 // Setting utf8 data format
                 mysqli_set_charset($conexion, "utf8");
 
-                $select = "SELECT * FROM inventario_venta";
+                $select = "SELECT * FROM inventory";
                 $result = mysqli_query($conexion, $select);
-                if(mysqli_num_rows($result) > 0){
-                    while($data = mysqli_fetch_array($result)){
+                if(mysqli_num_rows($result) > 0 ){
+                    while($data = mysqli_fetch_array($result)){   
 
               ?>
               <tbody>
                 <tr>
-                  <td><?php echo $data["#_de_factura"]; ?></td>
-                  <td><?php echo $data["fecha"]; ?></td>
-                  <td><?php echo $data["descripción"]; ?></td>
-                  <td><?php echo $data["cantidad"]; ?></td>
+                  <td><?php echo $data["id_product"]; ?></td>
+                  <td><?php echo $data["description"]; ?></td>
+                  <td><?php echo $data["initial_stocks"]; ?></td>
+                  <td><?php echo $data["purchases"]; ?></td>
+                  <td><?php echo $data["sales"]; ?></td>
+                  <td><?php echo $data["stock"]; ?></td>
                   <td>
                   	<a href="#">Editar</a> -&nbsp;
                   	<a href="#">Borrar</a>
@@ -103,17 +108,21 @@
                 </tr>
                 <?php 
                     }
-                  }else{
+                   }else{
+
                 ?>
                 <tr>
-                    <td align="center" colspan="5">No hay datos disponibles en la tabla</td>
+                    <td align="center" colspan="7">No hay datos disponibles en la tabla</td>
                 </tr>
-                <?php } ?>
+                <?php 
+                  }
+                    mysqli_close($conexion);
+                ?>
               </tbody>
             </table>
           </div>
         </div>
-       <!--  end content -->
+        <!-- end content -->
       </div>
     </div>
     <!-- end container -->
