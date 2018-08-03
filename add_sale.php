@@ -77,26 +77,26 @@
         </div>
         <!-- end nav-sidebar -->
         
-        <!-- form añadir producto -->
+        <!-- form add sale -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
             <h1 class="text-center page-header">Añadir Venta</h1>
           <form action="" method="post" class="form-producto custom-form">
             <div class="form-group">
               <label for="exampleInput1">Fecha</label>
-              <input type="text" class="form-control" name="date" id="exampleInput1">
+              <input type="text" class="form-control" id="exampleInput1" name="date">
             </div>
             <div class="form-group">
               <label for="exampleInput2">Descripción</label>
-              <input type="text" class="form-control" name="description" id="exampleInput2">
+              <input type="text" class="form-control" id="exampleInput2" name="description">
             </div>
             <div class="form-group">
               <label for="exampleInput3">Cantidad</label>
-              <input type="text" class="form-control" name="quantity" id="exampleInput3">
+              <input type="text" class="form-control" id="exampleInput3" name="quantity">
             </div>
             <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
           </form>
         </div>
-        <!-- end form añadir producto -->
+        <!-- end form add sale -->
       </div>
     </div>
     <!-- end container -->

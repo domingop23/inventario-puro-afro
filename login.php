@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Inventario</title>
+	<title>Login</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body class="body-login">
+    <!-- container -->
 	<div class="container">
         <h2 class="form-signin-heading">Por favor, registrese</h2>
         <form class="form-signin">
@@ -33,6 +34,6 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">Registrarse
             </button>
         </form>
-    </div> <!-- /container -->
+    </div> <!-- end container -->
 </body>
 </html>

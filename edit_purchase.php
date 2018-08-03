@@ -1,13 +1,31 @@
 <?php
     include("conexion.php");
 
+    // Getting the data from the database
+    if(isset($_GET["id"]) && $_GET["id"]){
+        $id = $_GET["id"];
+
+        // Setting utf8 data format
+        mysqli_set_charset($conexion, "utf8");
+
+        $get_data = "SELECT date, description, quantity FROM purchases WHERE num_invoice= '$id'";
+        $result = mysqli_query($conexion, $get_data) or die(mysqli_error($conexion));
+        $data = mysqli_fetch_array($result);
+
+        $date = $data["date"];
+        $description = $data["description"];
+        $quantity = $data["quantity"];
+    }
+
+    // Saving the update of the data again
     if(isset($_POST["save"]) && $_POST["save"]){
+        $id = $_GET["id"];
         $date = $_POST["date"];
         $description = $_POST["description"];
         $quantity = $_POST["quantity"];
 
-        $insert = "INSERT INTO purchases (date, description, quantity) VALUES ('$date', '$description', '$quantity')";
-        if(mysqli_query($conexion, $insert)){
+        $update = "UPDATE purchases SET date= '$date', description= '$description', quantity= '$quantity' WHERE num_invoice= '$id'";
+        if(mysqli_query($conexion, $update)){
             header("Location: purchases.php");
         }
         mysqli_close($conexion);
@@ -18,7 +36,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Añadir Compra</title>
+	<title>Editar Compra</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -76,26 +94,26 @@
         </div>
         <!-- end nav-sidebar -->
         
-        <!-- form add purchase -->
+        <!-- form edit purchase -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-            <h1 class="text-center page-header">Añadir Compra</h1>
+            <h1 class="text-center page-header">Editar Compra</h1>
           <form action="" method="post" class="custom-form">
             <div class="form-group">
               <label for="exampleInput1">Fecha</label>
-              <input type="text" class="form-control" id="exampleInput1" name="date">
+              <input type="text" class="form-control" id="exampleInput1" name="date" value="<?php echo $date; ?>">
             </div>
             <div class="form-group">
               <label for="exampleInput2">Descripción</label>
-              <input type="text" class="form-control" id="exampleInput2" name="description">
+              <input type="text" class="form-control" id="exampleInput2" name="description" value="<?php echo $description; ?>">
             </div>
             <div class="form-group">
               <label for="exampleInput3">Cantidad</label>
-              <input type="text" class="form-control" id="exampleInput3" name="quantity">
+              <input type="text" class="form-control" id="exampleInput3" name="quantity" value="<?php echo $quantity; ?>">
             </div>
             <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
           </form>
         </div>
-        <!-- end form add purchase -->
+        <!-- end form edit purchase -->
       </div>
     </div>
     <!-- end container -->

@@ -1,14 +1,30 @@
 <?php
-    include("conexion.php");
+    include('conexion.php');
 
+    // Getting the data from the database
+    if(isset($_GET["id"]) && $_GET["id"]){
+        $id = $_GET["id"];
+
+        // Setting utf8 data format
+        mysqli_set_charset($conexion, "utf8");
+
+        $get_data = "SELECT description, initial_stocks FROM inventory WHERE id_product= '$id'";
+        $result = mysqli_query($conexion, $get_data) or die(mysqli_error($conexion));
+        $data = mysqli_fetch_array($result);
+
+        $description = $data["description"];
+        $initial_stocks = $data["initial_stocks"];
+    }
+
+    // Saving the update of the data again
     if(isset($_POST["save"]) && $_POST["save"]){
-        $date = $_POST["date"];
+        $id = $_GET["id"];
         $description = $_POST["description"];
-        $quantity = $_POST["quantity"];
+        $initial_stocks = $_POST["initial_stocks"];
 
-        $insert = "INSERT INTO purchases (date, description, quantity) VALUES ('$date', '$description', '$quantity')";
-        if(mysqli_query($conexion, $insert)){
-            header("Location: purchases.php");
+        $update = "UPDATE inventory SET description= '$description', initial_stocks= '$initial_stocks' WHERE id_product= '$id'";
+        if(mysqli_query($conexion, $update)){
+            header("Location: inventory.php");
         }
         mysqli_close($conexion);
     }
@@ -18,9 +34,9 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Añadir Compra</title>
+	<title>Editar Producto</title>
 
-	<!-- Meta -->
+	<!-- Meta viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Favicon -->
@@ -40,6 +56,7 @@
 	
 	<!-- Load css style -->
 	<link rel="stylesheet" href="css/style.css">
+
 </head>
 <body>
 	<!-- navbar -->
@@ -69,33 +86,30 @@
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventario.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="inventory.php">Inventario <span class="sr-only">(current)</span></a></li>
             <li><a href="sales.php">Ventas</a></li>
             <li><a href="purchases.php">Compras</a></li>
           </ul>
         </div>
         <!-- end nav-sidebar -->
         
-        <!-- form add purchase -->
+        <!-- form edit product -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
-            <h1 class="text-center page-header">Añadir Compra</h1>
-          <form action="" method="post" class="custom-form">
+            <h1 class="text-center page-header">Editar Producto</h1>
+          <form action="" method="post" class="form-producto custom-form">
             <div class="form-group">
-              <label for="exampleInput1">Fecha</label>
-              <input type="text" class="form-control" id="exampleInput1" name="date">
+              <label for="exampleInput1">Descripción</label>
+              <input type="text" class="form-control" id="exampleInput1" name="description" value="<?php echo $description; ?>">
             </div>
             <div class="form-group">
-              <label for="exampleInput2">Descripción</label>
-              <input type="text" class="form-control" id="exampleInput2" name="description">
+              <label for="exampleInput2">Existencias Iniciales</label>
+              <input type="text" class="form-control" id="exampleInput2" name="initial_stocks" value="<?php echo $initial_stocks; ?>">
             </div>
-            <div class="form-group">
-              <label for="exampleInput3">Cantidad</label>
-              <input type="text" class="form-control" id="exampleInput3" name="quantity">
-            </div>
-            <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
+            <button type="submit" class="btn btn-success btn-lg" name="save" value="1">
+            Guardar</button>
           </form>
         </div>
-        <!-- end form add purchase -->
+        <!-- end form edit product -->
       </div>
     </div>
     <!-- end container -->

@@ -97,7 +97,7 @@
                   <td><?php echo $data["description"]; ?></td>
                   <td><?php echo $data["quantity"]; ?></td>
                   <td>
-                  	<a href="#">Editar</a> -&nbsp;
+                  	<a href="edit_sale.php?id=<?php echo $data["num_invoice"]; ?>">Editar</a> -&nbsp;
                   	<a href="#">Borrar</a>
                   </td>
                 </tr>

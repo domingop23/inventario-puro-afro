@@ -76,7 +76,7 @@
         </div>
         <!-- end nav-sidebar -->
         
-        <!-- form añadir producto -->
+        <!-- form add product -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
             <h1 class="text-center page-header">Añadir Producto</h1>
           <form action="" method="post" class="form-producto custom-form">
@@ -92,7 +92,7 @@
             Guardar</button>
           </form>
         </div>
-        <!-- end form añadir producto -->
+        <!-- end form add product -->
       </div>
     </div>
     <!-- end container -->

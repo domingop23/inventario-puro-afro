@@ -102,7 +102,7 @@
                   <td><?php echo $data["sales"]; ?></td>
                   <td><?php echo $data["stock"]; ?></td>
                   <td>
-                  	<a href="#">Editar</a> -&nbsp;
+                  	<a href="edit_product.php?id=<?php echo $data["id_product"]; ?>">Editar</a> -&nbsp;
                   	<a href="#">Borrar</a>
                   </td>
                 </tr>
