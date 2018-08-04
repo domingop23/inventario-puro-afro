@@ -1,4 +1,11 @@
 <?php
+    // initializing and validating the session to the user
+    session_start();
+    if($_SESSION["connected"] == false){
+        header("Location: index.php");
+    }
+
+    // including the connection of the data
     include("conexion.php");
 
     if(isset($_POST["save"]) && $_POST["save"]){
@@ -56,7 +63,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li class"user"><a href="#"><i class="fa fa-user-circle-o" aria-hidden="true"> Log Out</i></a></li>
+            <li class"user"><a href="logout.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span><?php echo $_SESSION["name"]; ?></span> - Log Out</a></li>
           </ul>
         </div>
       </div>
