@@ -60,12 +60,12 @@
     <!-- end navbar -->
 
     <!--container -->
-    <div class="container-fluid">
+    <div class="container-fluid app">
       <div class="row">
         <!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventory.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="inventory.php">Inventario</a></li>
             <li><a href="sales.php">Ventas</a></li>
             <li><a href="purchases.php">Compras</a></li>
           </ul>
@@ -98,13 +98,13 @@
               ?>
               <tbody>
                 <tr>
-                  <td><?php echo $data["num_invoice"]; ?></td>
+                  <td><?php echo $data["invoice_id"]; ?></td>
                   <td><?php echo $data["date"]; ?></td>
-                  <td><?php echo $data["description"]; ?></td>
+                  <td><?php echo $data["product_id"]; ?></td>
                   <td><?php echo $data["quantity"]; ?></td>
                   <td>
-                    <a href="edit_purchase.php?id=<?php echo $data["num_invoice"]; ?>">Editar</a> -&nbsp;
-                    <a href="delete_purchase.php?id=<?php echo $data["num_invoice"]; ?>">Borrar</a>
+                    <a href="edit_purchase.php?id=<?php echo $data["invoice_id"]; ?>">Editar</a> -&nbsp;
+                    <a href="delete_purchase.php?id=<?php echo $data["invoice_id"]; ?>">Borrar</a>
                   </td>
                 </tr>
                 <?php
@@ -127,8 +127,9 @@
     </div>
     <!-- end container -->
 
-    <!-- Load script js -->
+    <!-- load jquery -->
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

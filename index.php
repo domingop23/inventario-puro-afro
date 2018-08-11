@@ -9,6 +9,9 @@
         $user = $_POST["user"];
         $password = $_POST["password"];
 
+        // Setting utf8 data format
+        mysqli_set_charset($conexion, "utf8");
+
         $select = "SELECT * FROM users WHERE user= '$user' AND password= '$password' LIMIT 1";
         $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
 
@@ -22,6 +25,7 @@
         }else{
             $error = "El Usuario o Contraseña no es correcto";
         }
+        mysqli_close($conexion);
     }
 ?>
 

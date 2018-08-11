@@ -16,12 +16,12 @@
         // Setting utf8 data format
         mysqli_set_charset($conexion, "utf8");
 
-        $get_data = "SELECT date, description, quantity FROM purchases WHERE num_invoice= '$id'";
+        $get_data = "SELECT date, product_id, quantity FROM purchases WHERE invoice_id= '$id'";
         $result = mysqli_query($conexion, $get_data) or die(mysqli_error($conexion));
         $data = mysqli_fetch_array($result);
 
         $date = $data["date"];
-        $description = $data["description"];
+        $description = $data["product_id"];
         $quantity = $data["quantity"];
     }
 
@@ -95,7 +95,7 @@
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventario.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="inventory.php">Inventario <span class="sr-only">(current)</span></a></li>
             <li><a href="sales.php">Ventas</a></li>
             <li><a href="purchases.php">Compras</a></li>
           </ul>
@@ -126,8 +126,9 @@
     </div>
     <!-- end container -->
 
-	<!-- Load script js -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- load jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

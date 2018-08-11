@@ -11,7 +11,7 @@
         $description = $_POST["description"];
         $initial_stocks = $_POST["initial_stocks"];
 
-        $insert = "INSERT INTO inventory (description, initial_stocks) VALUES ('$description', '$initial_stocks')";
+        $insert = "INSERT INTO inventory (description, initial_stocks, purchases, sales, stock) VALUES ('$description', '$initial_stocks', 0, 0, '$initial_stocks')";
         if(mysqli_query($conexion, $insert)){
             header("Location: inventory.php");   
         }
@@ -85,14 +85,14 @@
         <!-- form add product -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
             <h1 class="text-center page-header">Añadir Producto</h1>
-          <form action="" method="post" class="form-producto custom-form">
+          <form action="" method="post" class="custom-form">
             <div class="form-group">
               <label for="exampleInput1">Descripción</label>
-              <input type="text" class="form-control" id="exampleInput1" name="description">
+              <input type="text" class="form-control" name="description">
             </div>
             <div class="form-group">
               <label for="exampleInput2">Existencias Iniciales</label>
-              <input type="text" class="form-control" id="exampleInput2" name="initial_stocks">
+              <input type="text" class="form-control"  name="initial_stocks">
             </div>
             <button type="submit" class="btn btn-success btn-lg" name="save" value="1">
             Guardar</button>
@@ -103,8 +103,9 @@
     </div>
     <!-- end container -->
 
-	<!-- Load script js -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- load jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,19 +1,36 @@
 <?php
-    // initializing and validating the session to the user
+    // Initializing and validating the session to the user
     session_start();
     if($_SESSION["connected"] == false){
         header("Location: index.php");
     }
 
-    // including the connection of the data
+    // Including the connection of the data
     include("conexion.php");
 
     if(isset($_POST["save"]) && $_POST["save"]){
-        $date = $_POST["date"];
-        $description = $_POST["description"];
+        $product_id = $_POST["product_id"];
         $quantity = $_POST["quantity"];
+        $date = $_POST["date"];
 
-        $insert = "INSERT INTO purchases (date, description, quantity) VALUES ('$date', '$description', '$quantity')";
+        // Selecting stock & purchases values from inventory table
+        $select = "SELECT stock, purchases FROM inventory WHERE product_id= '$product_id' LIMIT 1";
+        $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
+        $data = mysqli_fetch_array($result);
+
+        $stock = $data["stock"];
+        $purchases = $data["purchases"];
+
+        // Total stock & purchases
+        $stock = $stock + $quantity;
+        $purchases = $purchases + $quantity;
+
+        // Updating stock & sales value from inventory table
+        $update = "UPDATE inventory SET stock= '$stock', purchases= '$purchases' WHERE product_id= '$product_id'";
+        mysqli_query($conexion, $update) or die(mysqli_error($conexion));
+
+        // Inserting data from purchases table
+        $insert = "INSERT INTO purchases (product_id, quantity, date) VALUES ('$product_id', '$quantity', '$date')";
         if(mysqli_query($conexion, $insert)){
             header("Location: purchases.php");
         }
@@ -44,6 +61,9 @@
 
     <!-- Load google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
+
+    <!-- Load datepicker style -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 	<!-- Load css style -->
 	<link rel="stylesheet" href="css/style.css">
@@ -76,7 +96,7 @@
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventario.php">Inventario <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="inventory.php">Inventario <span class="sr-only">(current)</span></a></li>
             <li><a href="sales.php">Ventas</a></li>
             <li><a href="purchases.php">Compras</a></li>
           </ul>
@@ -88,16 +108,29 @@
             <h1 class="text-center page-header">Añadir Compra</h1>
           <form action="" method="post" class="custom-form">
             <div class="form-group">
-              <label for="exampleInput1">Fecha</label>
-              <input type="text" class="form-control" id="exampleInput1" name="date">
+              <label for="exampleInput1">Producto</label>
+              <select class="form-control" name="product_id">
+                <option value="">Seleccionar producto</option>
+                <?php
+                    // Selecting product_id & description values from inventory table
+                    $select = "SELECT product_id, description FROM inventory";
+                    $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
+                    while($data = mysqli_fetch_array($result)){
+                ?>
+                <option value="<?php echo $data["product_id"]; ?>"><?php echo $data["description"]; ?></option>
+                <?php
+                    }
+                    mysqli_close($conexion);
+                ?>
+              </select>
             </div>
             <div class="form-group">
-              <label for="exampleInput2">Descripción</label>
-              <input type="text" class="form-control" id="exampleInput2" name="description">
+              <label for="exampleInput2">Cantidad</label>
+              <input type="text" class="form-control" name="quantity">
             </div>
             <div class="form-group">
-              <label for="exampleInput3">Cantidad</label>
-              <input type="text" class="form-control" id="exampleInput3" name="quantity">
+              <label for="exampleInput3">Fecha</label>
+              <input type="text" class="form-control" id="datepicker" name="date">
             </div>
             <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
           </form>
@@ -107,8 +140,11 @@
     </div>
     <!-- end container -->
 
-	<!-- Load script js -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- load jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- load datepicker script-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -60,7 +60,7 @@
     <!-- end navbar -->
 
 	<!--container -->
-    <div class="container-fluid">
+    <div class="container-fluid app">
       <div class="row">
       	<!-- nav-sidebar -->
         <div class="col-sm-3 col-md-2 sidebar">
@@ -94,22 +94,22 @@
                 mysqli_set_charset($conexion, "utf8");
 
                 $select = "SELECT * FROM inventory";
-                $result = mysqli_query($conexion, $select);
+                $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
                 if(mysqli_num_rows($result) > 0 ){
                     while($data = mysqli_fetch_array($result)){   
 
               ?>
               <tbody>
                 <tr>
-                  <td><?php echo $data["id_product"]; ?></td>
+                  <td><?php echo $data["product_id"]; ?></td>
                   <td><?php echo $data["description"]; ?></td>
                   <td><?php echo $data["initial_stocks"]; ?></td>
                   <td><?php echo $data["purchases"]; ?></td>
                   <td><?php echo $data["sales"]; ?></td>
                   <td><?php echo $data["stock"]; ?></td>
                   <td>
-                  	<a href="edit_product.php?id=<?php echo $data["id_product"]; ?>">Editar</a> -&nbsp;
-                  	<a href="delete_product.php?id=<?php echo $data["id_product"]; ?>">Borrar</a>
+                  	<a href="edit_product.php?id=<?php echo $data["product_id"]; ?>">Editar</a> -&nbsp;
+                  	<a href="delete_product.php?id=<?php echo $data["product_id"]; ?>">Borrar</a>
                   </td>
                 </tr>
                 <?php 
@@ -133,8 +133,9 @@
     </div>
     <!-- end container -->
 
-	<!-- Load script js -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- load jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

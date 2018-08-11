@@ -1,19 +1,36 @@
 <?php
-    // initializing and validating the session to the user
+    // Initializing and validating the session to the user
     session_start();
     if($_SESSION["connected"] == false){
         header("Location: index.php");
     }
 
-    // including the connection of the data
+    // Including the connection of the database
     include("conexion.php");
 
     if(isset($_POST["save"]) && $_POST["save"]){
-        $date = $_POST["date"];
-        $description = $_POST["description"];
+        $product_id = $_POST["product_id"];
         $quantity = $_POST["quantity"];
-        
-        $insert = "INSERT INTO sales (date, description, quantity) VALUES ('$date', '$description', '$quantity')"; 
+        $date = $_POST["date"];
+
+        // Selecting stock & sales values from inventory table
+        $select = "SELECT stock, sales FROM inventory WHERE product_id= '$product_id' LIMIT 1";
+        $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
+        $data = mysqli_fetch_array($result);
+
+        $stock = $data["stock"];
+        $sales = $data["sales"];
+
+        // Total stock & sales
+        $stock = $stock - $quantity;
+        $sales = $sales + $quantity;
+
+        // Updating stock & sales value from inventory table
+        $update = "UPDATE inventory SET stock= '$stock', sales= '$sales' WHERE product_id= '$product_id'";
+        mysqli_query($conexion, $update) or die(mysqli_error($conexion));
+
+        // Inserting data from sales table
+        $insert = "INSERT INTO sales (product_id, quantity, date) VALUES ('$product_id', '$quantity', '$date')"; 
         if(mysqli_query($conexion, $insert)){
             header('Location: sales.php');
         }
@@ -44,6 +61,9 @@
 
     <!-- Load google fonts -->
     <link href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
+
+    <!-- Load datepicker style -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	
 	<!-- Load css style -->
 	<link rel="stylesheet" href="css/style.css">
@@ -87,18 +107,31 @@
         <!-- form add sale -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
             <h1 class="text-center page-header">Añadir Venta</h1>
-          <form action="" method="post" class="form-producto custom-form">
+          <form action="" method="post" class="custom-form">
             <div class="form-group">
-              <label for="exampleInput1">Fecha</label>
-              <input type="text" class="form-control" id="exampleInput1" name="date">
-            </div>
-            <div class="form-group">
-              <label for="exampleInput2">Descripción</label>
-              <input type="text" class="form-control" id="exampleInput2" name="description">
+              <label for="exampleSelect">Producto</label>
+              <select class="form-control" name="product_id">
+                <option value="">Seleccionar producto</option>
+                <?php
+                    // Selecting product_id & description values from inventory table
+                    $select = "SELECT product_id, description FROM inventory";
+                    $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
+                    while($data = mysqli_fetch_array($result)){
+                ?>
+                <option value="<?php echo $data["product_id"]; ?>"><?php echo $data["description"]; ?></option>
+                <?php
+                    }
+                    mysqli_close($conexion);
+                ?>
+              </select>
             </div>
             <div class="form-group">
               <label for="exampleInput3">Cantidad</label>
-              <input type="text" class="form-control" id="exampleInput3" name="quantity">
+              <input type="text" class="form-control" name="quantity">
+            </div>
+            <div class="form-group">
+              <label for="exampleInput1">Fecha</label>
+              <input type="text" class="form-control" id="datepicker" name="date">
             </div>
             <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
           </form>
@@ -108,8 +141,11 @@
     </div>
     <!-- end container -->
 
-	<!-- Load script js -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- load jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- load datepicker script-->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>

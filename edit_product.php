@@ -15,7 +15,7 @@
         // Setting utf8 data format
         mysqli_set_charset($conexion, "utf8");
 
-        $get_data = "SELECT description, initial_stocks FROM inventory WHERE id_product= '$id'";
+        $get_data = "SELECT description, initial_stocks FROM inventory WHERE product_id= '$id'";
         $result = mysqli_query($conexion, $get_data) or die(mysqli_error($conexion));
         $data = mysqli_fetch_array($result);
 
@@ -121,8 +121,9 @@
     </div>
     <!-- end container -->
 
-	<!-- Load script js -->
-	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- load jquery -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- load main js -->
+    <script src="js/main.js"></script>
 </body>
 </html>
