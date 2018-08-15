@@ -9,81 +9,26 @@
     include("conexion.php");
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>Ventas</title>
+    <!-- Including header.php -->
+    <?php include("layout/header.php"); ?>
 
-	<!-- Meta -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-	<!-- Favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-
-	<!-- Load css bootstrap -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-	<!-- Custom styles for this template -->
-	<link rel="stylesheet" href="css/dashboard.css">
-
-    <!-- Load icon font-awesome -->
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
-    <!-- Load google fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Hanalei+Fill" rel="stylesheet">
-	
-	<!-- Load css style -->
-	<link rel="stylesheet" href="css/style.css">
-
-</head>
-<body>
-    <!-- navbar -->
-	<nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand logo" href="inventory.php">Sistema de Inventario</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li class"user"><a href="logout.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span><?php echo $_SESSION["name"]; ?></span> - Log Out</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-    <!-- end navbar -->
-
-    <!--container -->
-    <div class="container-fluid app">
-      <div class="row">
-        <!-- nav-sidebar -->
-        <div class="col-sm-3 col-md-2 sidebar">
-          <ul class="nav nav-sidebar">
-            <li class="active"><a href="inventory.php">Inventario</a></li>
-            <li><a href="sales.php">Ventas</a></li>
-            <li><a href="purchases.php">Compras</a></li>
-          </ul>
-        </div>
-        <!-- end nav-sidebar -->
+    <!-- Including nav-sidebar -->
+    <?php include("layout/nav-sidebar.php"); ?>
 
         <!-- content -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class=" text-center page-header">Ventas de Productos</h1>
+          <h1 class=" text-center page-header">Control de Compras</h1>
           <h4 class="sub-header"><a class="pull-right" href="add_sale.php"><i class="fa fa-plus" aria-hidden="true"> Añadir Venta</i></a></h4>
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
                 <tr>
                   <th># de Factura</th>
-                  <th>Fecha</th>
-                  <th>Descripcion</th>
+                  <th>Descripción</th>
+                  <th>Precio Unitario</th>
                   <th>Cantidad</th>
+                  <th>Tipo de Pago</th>
+                  <th>Fecha</th>
                   <th>Acción</th>
                 </tr>
               </thead>
@@ -91,8 +36,11 @@
                 // Setting utf8 data format
                 mysqli_set_charset($conexion, "utf8");
 
-                $select = "SELECT * FROM sales";
-                $result = mysqli_query($conexion, $select);
+                $select = "SELECT sales.invoice_id, sales.unit_price, sales.quantity, sales.payment_type, sales.date, inventory.description 
+                    FROM sales
+                    INNER JOIN inventory ON sales.product_id = inventory.product_id
+                    ORDER BY sales.invoice_id DESC";
+                $result = mysqli_query($conexion, $select) or die(mysqli_error($conexion));
                 if(mysqli_num_rows($result) > 0){
                     while($data = mysqli_fetch_array($result)){
 
@@ -100,12 +48,14 @@
               <tbody>
                 <tr>
                   <td><?php echo $data["invoice_id"]; ?></td>
-                  <td><?php echo $data["date"]; ?></td>
-                  <td><?php echo $data["product_id"]; ?></td>
+                  <td><?php echo $data["description"]; ?></td>
+                  <td><?php echo $data["unit_price"]; ?></td>
                   <td><?php echo $data["quantity"]; ?></td>
+                  <td><?php echo $data["payment_type"]; ?></td>
+                  <td><?php echo $data["date"]; ?></td>
                   <td>
-                  	<a href="edit_sale.php?id=<?php echo $data["invoice_id"]; ?>">Editar</a> -&nbsp;
-                  	<a href="delete_sale.php?id=<?php echo $data["invoice_id"]; ?>">Borrar</a>
+                  	<!-- <a href="edit_sale.php?id=<?php echo $data["invoice_id"]; ?>">Editar</a> -&nbsp; -->
+                  	<a href="delete_sale.php?id=<?php echo $data["invoice_id"]; ?>" id="delete_sale">Borrar</a>
                   </td>
                 </tr>
                 <?php 
@@ -128,9 +78,5 @@
     </div>
     <!-- end container -->
 
-	<!-- load jquery -->
-    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- load main js -->
-    <script src="js/main.js"></script>
-</body>
-</html>
+	<!-- Including footer.php -->
+    <?php include("layout/footer.php"); ?>

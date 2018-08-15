@@ -1,13 +1,13 @@
 <?php
     session_start();
     include('conexion.php');
-
+    echo  md5('admin');
     $_SESSION["connected"] = false;
     $error = "";
 
     if(isset($_POST["sign_in"]) && $_POST["sign_in"]){
         $user = $_POST["user"];
-        $password = $_POST["password"];
+        $password = md5($_POST["password"]);
 
         // Setting utf8 data format
         mysqli_set_charset($conexion, "utf8");
@@ -53,17 +53,17 @@
 <body class="body-login">
     <!-- container -->
 	<div class="container">
-        <h2 class="form-signin-heading">Por favor, registrese</h2>
+        <h2 class="form-signin-heading">Iniciar Sesión</h2>
         <span class="error"><?php echo $error; ?></span>
         <form class="form-signin" method="post">
             <input type="text" id="inputUser" class="form-control" name="user" placeholder="Usuario" required autofocus>
             <input type="password" id="inputPassword" class="form-control password" name="password" placeholder="Contraseña" required>
-            <div class="checkbox">
+            <!-- <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me"> Recuerdame
                 </label>
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="sign_in" value="2">Registrarse
+            </div> -->
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="sign_in" value="2">Entrar
             </button>
         </form>
     </div> <!-- end container -->
