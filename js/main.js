@@ -11,9 +11,10 @@ $(function(){
 	// Add active class to target link
 	$('.nav-sidebar li a[href="'+path[1]+'"]').parent().addClass('active');
 
-	// // Datepicker plugin
+	// Datepicker plugin
 	$('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 
+	// Confirm to delete any information to the table
 	$('#delete_product').click(function(){
 		return confirm('Estas seguro de eliminar este producto?');
 	});
