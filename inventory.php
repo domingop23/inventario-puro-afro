@@ -64,7 +64,7 @@
 
                 ?>
                 <tr>
-                    <td align="center" colspan="7">No hay datos disponibles en la tabla</td>
+                    <td align="center" colspan="8">No hay datos disponibles en la tabla</td>
                 </tr>
                 <?php 
                   }
