@@ -4,7 +4,7 @@
         header("Location: index.php");
     }
 
-    // including the connection of the data
+    // Including the connection of the data
     include("conexion.php");
 
     if(isset($_POST["save"]) && $_POST["save"]){
@@ -12,41 +12,42 @@
         $unit_price = $_POST["unit_price"];
         $initial_stocks = $_POST["initial_stocks"];
 
-        $insert = "INSERT INTO inventory (description, unit_price, initial_stocks, purchases, sales, stock) VALUES ('$description', '$unit_price', $initial_stocks', 0, 0, '$initial_stocks')";
+        $insert = "INSERT INTO inventory (description, unit_price, initial_stocks, purchases, sales, stock) VALUES ('$description', '$unit_price', '$initial_stocks', 0, 0, '$initial_stocks')";
         if(mysqli_query($conexion, $insert)){
             header("Location: inventory.php");   
         }
+        
         mysqli_close($conexion);
     }
 ?>
 
-    <!-- Including header.php -->
-    <?php include("layout/header.php"); ?>
-        
-        <!-- form add product -->
-        <div class="col-sm-9 col-sm-offset-2 col-md-8 col-md-offset-2">
-            <h1 class="text-center page-header">Añadir Producto</h1>
-          <form action="" method="post" class="custom-form">
-            <div class="form-group">
-              <label for="exampleInput1">Descripción</label>
-              <input type="text" class="form-control" name="description">
-            </div>
-            <div class="form-group">
-              <label for="exampleInput1">Precio Unitario</label>
-              <input type="text" class="form-control" name="unit_price">
-            </div>
-            <div class="form-group">
-              <label for="exampleInput2">Existencias Iniciales</label>
-              <input type="text" class="form-control"  name="initial_stocks">
-            </div>
-            <button type="submit" class="btn btn-success btn-lg" name="save" value="1">
-            Guardar</button>
-          </form>
+<!-- Including header.php -->
+<?php include("layout/header.php"); ?>
+    
+    <!-- form add product -->
+    <div class="col-sm-9 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <h1 class="text-center page-header">Añadir Producto</h1>
+      <form action="" method="post" class="custom-form">
+        <div class="form-group">
+          <label for="exampleInput1">Descripción</label>
+          <input type="text" class="form-control" name="description">
         </div>
-        <!-- end form add product -->
-      </div>
+        <div class="form-group">
+          <label for="exampleInput1">Precio Unitario</label>
+          <input type="text" class="form-control" name="unit_price">
+        </div>
+        <div class="form-group">
+          <label for="exampleInput2">Existencias Iniciales</label>
+          <input type="text" class="form-control"  name="initial_stocks">
+        </div>
+        <button type="submit" class="btn btn-success btn-lg" name="save" value="1">
+        Guardar</button>
+      </form>
     </div>
-    <!-- end container -->
+    <!-- end form add product -->
+  </div>
+</div>
+<!-- end container -->
 
-	<!-- Including footer.php -->
-    <?php include("layout/footer.php"); ?>
+<!-- Including footer.php -->
+<?php include("layout/footer.php"); ?>

@@ -1,9 +1,11 @@
 <?php
     session_start();
     include('conexion.php');
-    echo  md5('admin');
     $_SESSION["connected"] = false;
     $error = "";
+
+    // Getting a md5 password value
+    // echo md5('admin');
 
     if(isset($_POST["sign_in"]) && $_POST["sign_in"]){
         $user = $_POST["user"];
