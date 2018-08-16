@@ -1,7 +1,13 @@
 <?php
+    // check if the user is already logged in
     session_start();
+    if(isset($_SESSION["connected"]) && $_SESSION["connected"] == true){
+        header("Location: inventory.php");
+    }
+
+    // Including the connection of the data
     include('conexion.php');
-    $_SESSION["connected"] = false;
+
     $error = "";
 
     // Getting a md5 password value

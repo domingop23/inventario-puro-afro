@@ -5,7 +5,7 @@
         header("Location: index.php");
     }
 
-    // including the connection of the data
+    // Including the connection of the data
     include("conexion.php");
 ?>
 
