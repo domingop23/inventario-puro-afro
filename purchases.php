@@ -50,7 +50,7 @@
                   <td><?php echo $data["date"]; ?></td>
                   <td>
                     <!-- <a href="edit_purchase.php?id=<?php echo $data["invoice_id"]; ?>">Editar</a> -&nbsp; -->
-                    <a href="delete_purchase.php?id=<?php echo $data["invoice_id"]; ?>" id="delete_purchase">Borrar</a>
+                    <a href="delete_purchase.php?id=<?php echo $data["invoice_id"]; ?>" class="delete_item">Borrar</a>
                   </td>
                 </tr>
                 <?php

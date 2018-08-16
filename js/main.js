@@ -15,16 +15,8 @@ $(function(){
 	$('#datepicker').datepicker({dateFormat: 'yy-mm-dd'});
 
 	// Confirm to delete any information to the table
-	$('#delete_product').click(function(){
-		return confirm('Estas seguro de eliminar este producto?');
-	});
-
-	$('#delete_sale').click(function(){
-		return confirm('Estas seguro de eliminar esta venta?');
-	});
-
-	$('#delete_purchase').click(function(){
-		return confirm('Estas seguro de eliminar esta compra?');
+	$('.delete_item').click(function(){
+		return confirm('¿Está seguro que desea eliminar este registro?');
 	});
 
 });

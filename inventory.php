@@ -55,7 +55,7 @@
                   <td><?php echo $data["stock"]; ?></td>
                   <td>
                   	<a href="edit_product.php?id=<?php echo $data["product_id"]; ?>">Editar</a> -&nbsp;
-                  	<a href="delete_product.php?id=<?php echo $data["product_id"]; ?>" id="delete_product">Borrar</a>
+                  	<a href="delete_product.php?id=<?php echo $data["product_id"]; ?>" class="delete_item">Borrar</a>
                   </td>
                 </tr>
                 <?php 

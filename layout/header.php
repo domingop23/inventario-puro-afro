@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Añadir Venta</title>
+	<title>Sistema de Inventario</title>
 
 	<!-- Meta -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,7 +44,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="logout.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span><?php echo $_SESSION["name"]; ?></span> - Log Out</a></li>
+            <li><a href="logout.php"><i class="fa fa-user-circle-o" aria-hidden="true"></i> <span><?php echo ucwords(strtolower($_SESSION["name"])); ?></span> - Cerrar Sesión</a></li>
           </ul>
         </div>
       </div>

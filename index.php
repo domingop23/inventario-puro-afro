@@ -61,7 +61,7 @@
 <body class="body-login">
     <!-- container -->
 	<div class="container">
-        <h2 class="form-signin-heading">Iniciar Sesión</h2>
+        <h2 class="form-signin-heading">Sistema de Inventario</h2>
         <span class="error"><?php echo $error; ?></span>
         <form class="form-signin" method="post">
             <input type="text" id="inputUser" class="form-control" name="user" placeholder="Usuario" required autofocus>
@@ -71,7 +71,7 @@
                     <input type="checkbox" value="remember-me"> Recuerdame
                 </label>
             </div> -->
-            <button class="btn btn-lg btn-primary btn-block" type="submit" name="sign_in" value="2">Entrar
+            <button class="btn btn-lg btn-primary btn-block" type="submit" name="sign_in" value="2">Iniciar Sesión
             </button>
         </form>
     </div> <!-- end container -->
