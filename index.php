@@ -64,8 +64,8 @@
         <h2 class="form-signin-heading">Sistema de Inventario</h2>
         <span class="error"><?php echo $error; ?></span>
         <form class="form-signin" method="post">
-            <input type="text" id="inputUser" class="form-control" name="user" placeholder="Usuario" required autofocus>
-            <input type="password" id="inputPassword" class="form-control password" name="password" placeholder="Contraseña" required>
+            <input type="text" id="inputUser" class="form-control" name="user" placeholder="Usuario *" required autofocus>
+            <input type="password" id="inputPassword" class="form-control password" name="password" placeholder="Contraseña *" required>
             <!-- <div class="checkbox">
                 <label>
                     <input type="checkbox" value="remember-me"> Recuerdame
