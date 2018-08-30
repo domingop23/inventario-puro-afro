@@ -54,6 +54,7 @@
             </div>
             <button type="submit" class="btn btn-success btn-lg" name="save" value="1">
             Guardar</button>
+            <a class="btn btn-default btn-lg btn-cancel" href="inventory.php" role="button">Cancelar</a>
           </form>
         </div>
         <!-- end form edit product -->

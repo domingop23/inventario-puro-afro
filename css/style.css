@@ -25,6 +25,6 @@
   .sub-header { font-size: 1.2em; }
   .custom-form { margin-top: 30px; }
   .custom-form input, .custom-form select { height: 32px; }
-  .custom-form button { font-size: 1.1em; } }
+  .custom-form button, .custom-form .btn-cancel { font-size: 1.1em; } }
 
 /*# sourceMappingURL=style.css.map */

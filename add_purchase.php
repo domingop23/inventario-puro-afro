@@ -71,7 +71,7 @@
           <input type="text" class="form-control" id="datepicker" name="date">
         </div>
         <button type="submit" class="btn btn-success btn-lg" name="save" value="1">Guardar</button>
-        <a class="btn btn-default btn-lg" href="purchases.php" role="button">Cancelar</a>
+        <a class="btn btn-default btn-lg btn-cancel" href="purchases.php" role="button">Cancelar</a>
       </form>
     </div>
     <!-- end form add purchase -->
