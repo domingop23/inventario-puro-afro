@@ -19,4 +19,20 @@ $(function(){
 		return confirm('¿Está seguro que desea eliminar este registro?');
 	});
 
+
+	// showing & hiding arrows 
+	$('.fa-angle-double-left').hide();
+
+	$('.table-responsive').scroll(function(){
+		var scroll = $('.table-responsive').scrollLeft();
+		console.log(scroll);
+		
+		if(scroll < 464){
+			$('.fa-angle-double-right').show();
+		}else{
+			$('.fa-angle-double-right').hide();
+			$('.fa-angle-double-left').show();
+		}
+	});
+
 });
