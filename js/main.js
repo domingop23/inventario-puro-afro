@@ -27,11 +27,10 @@ $(function(){
 		var scroll = $('.table-responsive').scrollLeft();
 		console.log(scroll);
 		
-		if(scroll < 464){
-			$('.fa-angle-double-right').show();
-		}else{
-			$('.fa-angle-double-right').hide();
+		if(scroll >= 1){
 			$('.fa-angle-double-left').show();
+		}else{
+			$('.fa-angle-double-left').hide();
 		}
 	});
 
