@@ -25,12 +25,13 @@ $(function(){
 
 	$('.table-responsive').scroll(function(){
 		var scroll = $('.table-responsive').scrollLeft();
-		console.log(scroll);
-		
+
 		if(scroll >= 1){
 			$('.fa-angle-double-left').show();
+			$('.fa-angle-double-right').hide();
 		}else{
 			$('.fa-angle-double-left').hide();
+			$('.fa-angle-double-right').show();
 		}
 	});
 
