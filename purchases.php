@@ -67,6 +67,8 @@
               </tbody>
             </table>
           </div>
+          <i class="fa fa-angle-double-right fa-2x pull-right arrows" aria-hidden="true"></i>
+          <i class="fa fa-angle-double-left fa-2x arrows" aria-hidden="true"></i>
         </div>
        <!--  end content -->
       </div>
