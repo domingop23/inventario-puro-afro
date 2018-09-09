@@ -1,2 +1,3 @@
 # inventario-puro-afro
-Este es un sistema de inventario la cual la empresa Puro Afro utiliza para mantener el control de sus producto, realizado bajo una metodología periódica.
+This is an inventory system which the company Puro Afro uses to maintain control of its products, carried out under a periodic methodology.
+
