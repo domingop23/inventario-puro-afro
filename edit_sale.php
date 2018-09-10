@@ -48,7 +48,7 @@
         <!-- form edit sale -->
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2">
             <h1 class="text-center page-header">Editar Venta</h1>
-          <form action="" method="post" class="form-producto custom-form">
+          <form action="" method="post" class="custom-form">
             <div class="form-group">
               <label for="exampleInput1">Fecha</label>
               <input type="text" class="form-control" id="datepicker" name="date" value="<?php echo $date; ?>">

@@ -43,7 +43,7 @@
         <!-- form edit product -->
         <div class="col-sm-9 col-sm-offset-2 col-md-8 col-md-offset-2">
             <h1 class="text-center page-header">Editar Producto</h1>
-          <form action="" method="post" class="form-producto custom-form">
+          <form action="" method="post" class="custom-form">
             <div class="form-group">
               <label for="exampleInput1">Descripción</label>
               <input type="text" class="form-control" name="description" value="<?php echo $description; ?>">
